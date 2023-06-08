@@ -1,0 +1,55 @@
+﻿@model CorporateCompany.ViewModels.FooterViewModel
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mobile-text-center">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2 class="footer-heading mb-4">Hakkımızda</h2>
+                    <p>@Model.AboutUsSummary</p>
+                </div>
+                <div class="col-md-4 ml-auto">
+                    <h2 class="footer-heading mb-4">Hızlı Erişim Menüsü</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#AboutUs" class="smoothscroll">Hakkımızda</a></li>
+                        <li><a href="#Services" class="smoothscroll">Hizmetler</a></li>
+                        <li><a href="#Contact" class="smoothscroll">Bize Ulaşın</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2 class="footer-heading mb-4">Bizi Takip Edin</h2>
+                    @if (!string.IsNullOrEmpty(@Model.FacebookUrl))
+                    {
+                        <a href="@Model.FacebookUrl" class="pl-0 pr-3"><i class="fab fa-facebook-f"></i></a>
+                    }
+                    @if (!string.IsNullOrEmpty(@Model.TwitterUrl))
+                    {
+                        <a href="@Model.TwitterUrl" class="pl-3 pr-3"><i class="fab fa-twitter"></i></a>
+
+                    }
+                    @if (!string.IsNullOrEmpty(@Model.InstagramUrl))
+                    {
+                        <a href="@Model.InstagramUrl" class="pl-3 pr-3"><i class="fab fa-instagram"></i></a>
+
+                    }
+                    @if (!string.IsNullOrEmpty(@Model.LinkedInUrl))
+                    {
+                        <a href="@Model.LinkedInUrl" class="pl-3 pr-3"><i class="fab fa-linkedin-in"></i></a>
+                    }
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-5 mt-5 text-center">
+        <div class="col-md-12">
+            <div class="border-top pt-5">
+                <p>
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> | Tüm hakları sakladır | CorporateCompany
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</div>

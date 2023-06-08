@@ -1,0 +1,106 @@
+﻿@model CorporateCompany.Areas.Admin.ViewModels.ContentPhotosUpdateViewModel
+
+@{
+    ViewBag.Title = "Service Images";
+    Layout = "_Layout";
+}
+
+<link href="~/admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet"/>
+<link href="~/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet"/>
+<link rel="stylesheet" href="~/admin/assets/data-tables/DT_bootstrap.css"/>
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Update Slide Photo
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model.Photos.Any())
+                        {
+                            foreach (var photo in Model.Photos)
+                            {
+                                <tr class="gradeX">
+                                    <td>@photo.Id</td>
+                                    <td>@Model.Name</td>
+                                    <td>
+                                        <img src="@photo.Path" width="250" height="140" alt="Service Image"/>
+                                    </td>
+                                    <td>
+                                        <form asp-area="Admin" asp-controller="Services" asp-action="DeletePhoto" asp-route-id="@photo.Id" method="post">
+                                            <span id="confirmDeleteSpan_@photo.Id" style="display: none">
+                                                <button type="submit" data-toggle="tooltip" title="Submit" class="btn btn-danger btn-xs" style="border: transparent;">
+                                                    <span>
+                                                        <i style="color: white" class="fa fa-check"></i>
+                                                    </span>
+                                                </button>
+                                                <a onclick="confirmDelete('@photo.Id', false)" data-toggle="tooltip" title="Cancel" class="btn btn-success btn-xs ">
+                                                    <span>
+                                                        <i style="color: white" class="fa fa-times"></i>
+                                                    </span>
+                                                </a>
+                                            </span>
+                                            <span id="deleteSpan_@photo.Id">
+                                                <a onclick="confirmDelete('@photo.Id', true)" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs">
+                                                    <span>
+                                                        <i class="fa fa-trash"></i>
+                                                    </span>
+                                                </a>
+                                            </span>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Add New Service Photo
+            </header>
+            <div class="panel-body">
+                <form asp-area="Admin" asp-controller="Services" asp-action="Photos" method="post" enctype="multipart/form-data" role="form" class="form-horizontal tasi-form">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input asp-for="ContentId" type="hidden" value="@Model.ContentId"/>
+                    <input type="hidden" asp-for="Name" value="@Model.Name"/>
+                    <div class="form-group has-success">
+                        <label asp-for="PhotosToUpload" class="col-lg-2 control-label">Photo:</label>
+                        <div class="col-lg-10">
+                            <input asp-for="PhotosToUpload" type="file" required placeholder="Photo" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-danger" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/file-input.js"></script>
+    <script src="~/js/confirm-delete.js"></script>
+}

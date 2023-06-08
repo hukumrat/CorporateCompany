@@ -1,0 +1,72 @@
+﻿@model List<CorporateCompany.Areas.Admin.Models.Content>
+
+@{
+    ViewBag.Title = "Projects";
+    Layout = "_Layout";
+}
+
+<link href="~/admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+<link href="~/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/admin/assets/data-tables/DT_bootstrap.css" />
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Projects
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                </span>
+                <div class="row" style="margin-top: 15px; margin-left:10px; margin-bottom:10px;">
+                    <a asp-area="Admin" asp-controller="Projects" asp-action="Add" class="btn btn-info"><i class="fas fa-plus"></i> Add Project</a>
+                </div>
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Update</th>
+                            <th>Update Image</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model.Any())
+                        {
+                            foreach (var content in Model)
+                            {
+                                <tr class="gradeX">
+                                    <td>@content.Id</td>
+                                    <td>@content.Name</td>
+                                    <td><label style=" overflow-y: scroll; word-wrap: normal; word-break: break-all; height: 125px; width:auto" class="form-control"> @Html.Raw(content.Description) </label></td>
+                                    <td><a asp-area="Admin" asp-controller="Projects" asp-action="Update" asp-route-id="@content.Id" data-toggle="tooltip" title="Edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></td>
+                                    <td><a asp-area="Admin" asp-controller="Projects" asp-action="Photos" asp-route-id="@content.Id" data-toggle="tooltip" title="Edit" class="btn btn-primary btn-xs"><i class="fas fa-image"></i></a></td>
+                                    <td>
+                                        <form asp-area="Admin" asp-controller="Projects" asp-action="DeleteProject" asp-route-id="@content.Id" method="post">
+                                            <span id="confirmDeleteSpan_@content.Id" style="display: none">
+                                                <button type="submit" data-toggle="tooltip" title="Submit" class="btn btn-danger btn-xs" style="border: transparent;"> <span><i style="color: white" class="fa fa-check"></i></span></button>
+                                                <a onclick="confirmDelete('@content.Id', false)" data-toggle="tooltip" title="Cancel" class="btn btn-success btn-xs "> <span><i style="color: white" class="fa fa-times"></i></span> </a>
+                                            </span>
+                                            <span id="deleteSpan_@content.Id">
+                                                <a onclick="confirmDelete('@content.Id', true)" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"> <span><i class="fa fa-trash"></i></span></a>
+                                            </span>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/confirm-delete.js"></script>
+}

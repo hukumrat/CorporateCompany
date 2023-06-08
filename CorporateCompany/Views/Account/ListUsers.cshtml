@@ -1,0 +1,78 @@
+﻿@model List<CorporateCompany.Areas.Admin.Models.ApplicationUser>;
+
+@{
+    ViewBag.Title = "Slides";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+<link href="~/admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/admin/assets/data-tables/DT_bootstrap.css" />
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Slide List
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                </span>
+                <div class="row" style="margin-top: 15px; margin-left:10px; margin-bottom:10px;">
+                    <a asp-area="Admin" asp-controller="Slide" asp-action="Add" class="btn btn-info"><i class="fas fa-plus"></i> Add Slide</a>
+                </div>
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                foreach (var user in Model)
+                                {
+                                    <tr class="gradeX">
+                                        <td>@user.Id</td>
+                                        <td>@user.UserName</td>
+                                        <td>@user.Email</td>
+                                        <td><a asp-controller="Account" asp-action="EditUser" asp-route-id="@user.Id" data-toggle="tooltip" title="Edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></td>
+                                        <td>
+                                            <form asp-controller="Account" asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
+                                                <span id="confirmDeleteSpan_@user.Id" style="display: none">
+                                                    <button type="submit" data-toggle="tooltip" title="Submit" class="btn btn-danger btn-xs" style="border: transparent;"> <span><i style="color: white" class="fa fa-check"></i></span></button>
+                                                    <a onclick="confirmDelete('@user.Id', false)" data-toggle="tooltip" title="Cancel" class="btn btn-success btn-xs "> <span><i style="color: white" class="fa fa-times"></i></span> </a>
+                                                </span>
+                                                <span id="deleteSpan_@user.Id">
+                                                    <a onclick="confirmDelete('@user.Id', true)" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"> <span><i class="fa fa-trash"></i></span></a>
+                                                </span>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+@section Scripts
+    {
+    <script type="text/javascript" language="javascript" src="~/admin/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/admin/assets/data-tables/DT_bootstrap.js"></script>
+    <script src="~/admin/js/dynamic_table_init.js"></script>
+    <script src="~/admin/js/confirm-delete.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

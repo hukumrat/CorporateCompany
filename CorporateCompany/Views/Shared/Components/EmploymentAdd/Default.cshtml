@@ -1,0 +1,102 @@
+﻿@model CorporateCompany.Areas.Admin.ViewModels.EmploymentAddViewModel
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12 text-center" data-aos="fade">
+            <h2 class="section-title mb-3">İnsan Kaynakları</h2>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        @Html.Raw(@Model.Description)
+        <div class="py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-5">
+                    <a data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="False" aria-controls="collapseExample1" class="btn btn-primary btn-block py-2 shadow-sm with-chevron">
+                        <p class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><strong class="text-uppercase">İş Başvuru formu</strong><i class="fa fa-angle-down"></i></p>
+                    </a>
+                    <div id="collapseExample1" class="collapse shadow-sm show">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 mb-5">
+                                        <form asp-controller="Home" asp-action="Employment" enctype="multipart/form-data" method="post">
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6 mb-3 mb-md-0">
+                                                    <label asp-for="Name" class="text-black" for="Name">İsminiz:</label>
+                                                    <input asp-for="Name" type="text" id="Name" placeholder="İsim" class="form-control" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label asp-for="Surname" class="text-black" for="Surname">Soy İsminiz:</label>
+                                                    <input asp-for="Surname" type="text" id="Surname" placeholder="Soy İsim" class="form-control" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label asp-for="Email" class="text-black" for="Email">E-Posta Adresiniz:</label>
+                                                    <input asp-for="Email" type="email" id="Email" class="form-control" placeholder="example@domain.com" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label asp-for="Phone" class="text-black" for="Phone">Telefon Numaranız:</label>
+                                                    <input asp-for="Phone" type="text" id="Phone" class="form-control" placeholder="123-456-7890" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label asp-for="EducationId" class="text-black" for="EducationId">Eğitim Durumunuz:</label>
+                                                        <select id="EducationId" class="form-control " asp-for="EducationId" asp-items="@ViewBag.Educations"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label asp-for="Gender" class="text-black" for="Gender">Cinsiyetiniz:</label>
+                                                        @Html.DropDownListFor(x => x.Gender, new List<SelectListItem> { new SelectListItem { Text = "Erkek", Value = "1" }, new SelectListItem { Text = "Kadın", Value = "0" } }, "Cinsiyet Seçiniz", new { @class = "form-control", @id = "Gender", @required = "required" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label asp-for="Marriage" class="text-black" for="Marriage">Medeni Durumunuz:</label>
+                                                        @Html.DropDownListFor(x => x.Marriage, new List<SelectListItem> { new SelectListItem { Text = "Evli", Value = "1" }, new SelectListItem { Text = "Bekar", Value = "0" } }, "Medeni Durumunuz", new { @class = "form-control", @id = "Marriage", @required = "required" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="col-form-label text-black" asp-for="Cv" for="Cv">Cv:</label>
+                                                    <div class="custom-file ">
+                                                        <input type="file" name="Cv" asp-for="Cv" class="form-control custom-file-input" id="customFile" required />
+                                                        <label class="custom-file-label" for="customFile" id="customFileLabel">Dosya Seç</label>
+                                                        <span asp-validation-for="Cv" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-primary btn-md text-white mt-3"><i class="fas fa-paper-plane"></i>&nbsp; Gönder</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdbcSAaAAAAAGo34ZhCKD2AmxmlCsVqynTMsp5W"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LdbcSAaAAAAAGo34ZhCKD2AmxmlCsVqynTMsp5W', {action: 'employment'}).then(function(token) {
+            $("#GoogleEmploymentCaptchaToken").val(token);
+        });
+    });
+
+</script>

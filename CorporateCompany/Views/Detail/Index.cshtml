@@ -1,0 +1,125 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Detay";
+    Layout = "_Layout";
+}
+
+<div id="overlayer"></div>
+<div class="loader">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Yükleniyor...</span>
+    </div>
+</div>
+<div class="site-wrap">
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="js-menu-toggle"><i class="fas fa-times"></i></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a href="#Home" class="h2 mb-0">CorporateCompany</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li><a href="/#Home" class="nav-link">Ana Sayfa</a></li>
+                            <li class="has-children">
+                                <a class="nav-link">Kurumsal</a>
+                                <ul class="dropdown">
+                                    <li><a href="/#AboutUs" class="nav-link">Hakkımızda</a></li>
+                                    <li><a href="/#MissionVision" class="nav-link">Misyon & Vizyon</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/#Projects" class="nav-link">Projeler</a></li>
+                            <li><a href="/#Services" class="nav-link">Hizmetler</a></li>
+                            <li><a href="/#References" class="nav-link">Referanslar</a></li>
+                            <li><a href="/#Hr" class="nav-link">İnsan Kaynakları</a></li>
+                            <li><a href="/#Contact" class="nav-link">İletişim</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+
+                <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
+
+            </div>
+        </div>
+
+    </header>
+    <div class="site-blocks-cover overlay" style="background-image: url(/lib/home/images/hero_2.jpg);" data-aos="fade" id="Home">
+
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+
+
+                <div class="col-md-8 mt-lg-5 text-center">
+                    <h1 class="text-uppercase" data-aos="fade-up">Welcome</h1>
+                    <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio soluta eius error.</p>
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <a href="#Contact" class="btn smoothscroll btn-primary mr-2 mb-2">Get In Touch</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <a href="#AboutUs" class="mouse smoothscroll">
+            <span class="mouse-icon">
+                <span class="mouse-wheel"></span>
+            </span>
+        </a>
+    </div>
+</div>
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2 class="footer-heading mb-4">Hakkımızda</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+                    </div>
+                    <div class="col-md-3 ml-auto">
+                        <h2 class="footer-heading mb-4">Hızlı Erişim Menüsü</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/#AboutUs" class="smoothscroll">Hakkımızda</a></li>
+                            <li><a href="/#Services" class="smoothscroll">Hizmetler</a></li>
+                            <li><a href="/#Contact" class="smoothscroll">Bize Ulaşın</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h2 class="footer-heading mb-4">Bizi Takip Edin</h2>
+                        <a href="#" class="pl-0 pr-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="pl-3 pr-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="pl-3 pr-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="pl-3 pr-3"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+                <div class="border-top pt-5">
+                    <p>
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> | Tüm hakları sakladır. CorporateCompany
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+

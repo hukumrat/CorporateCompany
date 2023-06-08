@@ -1,0 +1,35 @@
+﻿@model List<CorporateCompany.ViewModels.ProjectsListViewModel>
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12 text-center" data-aos="fade">
+                <h2 class="section-title mb-3">Projeler</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-5" data-aos="fade-up">
+            <div id="filters" class="filters text-center button-group col-md-7">
+                <button class="btn btn-primary active" data-filter="*">Tümü</button>
+                <button class="btn btn-primary" data-filter=".True">Tamamlanan</button>
+                <button class="btn btn-primary" data-filter=".False">Devam Eden</button>
+            </div>
+        </div>
+    </div>
+<div id="posts">
+    @foreach (var item in @Model)
+    {
+        <div class="item @item.IsFinished col-12 col-md-6 col-lg-3 no-padding">
+            <a asp-controller="Detail" asp-action="Projects" asp-route-id="@item.Id" class="item-wrap">
+                <div id="filter_@item.Id">
+                    <div class="portfolio-content">
+                        <figure>
+                            <img src="@item.Photos.First().Path" alt="Image">
+                        </figure>
+                        <div class="entry-content flex flex-column align-items-center justify-content-center">
+                            <h3><a href="#">@item.Name</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

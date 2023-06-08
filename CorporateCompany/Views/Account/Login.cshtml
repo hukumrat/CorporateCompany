@@ -1,0 +1,143 @@
+﻿@model CorporateCompany.Areas.Admin.ViewModels.SignInViewModel
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Giriş Yap</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/css/mdb.min.css" rel="stylesheet" />
+    <link href="~/lib/izitoast/css/iziToast.css" rel="stylesheet" />
+    <meta name="theme-color" content="#7952b3">
+    <link href="~/css/signin.css" rel="stylesheet" />
+    <style>
+        .form-elegant .font-small {
+            font-size: 0.8rem;
+        }
+
+        .form-elegant .z-depth-1a {
+            -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+            box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+        }
+
+        .form-elegant .z-depth-1-half,
+        .form-elegant .btn:hover {
+            -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+            box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main role="main">
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <div id="card-cover" class="col-10 offset-1 col-lg-8 offset-lg-2 d-inline-block justify-content-center align-items-center">
+                    <section class="form-elegant form-signin">
+                        <div class="card">
+                            <div class="card-body ">
+                                <div class="text-center">
+                                    <h3 class="dark-grey-text mb-5"><strong>Giriş Yap</strong></h3>
+                                </div>
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="md-form input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text md-addon"><i class="fas fa-user prepend-icon"></i></span>
+                                    </div>
+                                    <input asp-for="UserName" type="text" class="form-control" placeholder="Kullanıcı Adı" requried="required">
+                                </div>
+                                <div class="md-form input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text md-addon"><i class="fas fa-lock prepend-icon"></i></span>
+                                    </div>
+                                    <input asp-for="Password" type="password" class="form-control text-slash" placeholder="Yeni Şifre Tekrar" requried="required">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text md-addon"><a class="password-slash"><i class="fas fa-eye icon-slash append-icon" aria-hidden="true"></i></a></span>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input asp-for="RememberMe" type="checkbox" class="form-check-input" id="RememberMe" checked>
+                                    <label class="form-check-label" for="RememberMe">Beni Hatırla</label>
+                                </div>
+                                <div class="text-center mb-3">
+                                    <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Giriş Yap</button>
+                                </div>
+                                <div class="text-center">
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> CorporateCompany
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/mdb.min.2.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/lib/font-awesome/js/all.js"></script>
+    <script src="~/lib/izitoast/js/iziToast.js"></script>
+<script src="~/lib/home/js/eye-slash.js"></script>
+<script>
+    $(window).resize(function(){
+        if ($(window).width() <= 768) {
+            $("#card-cover").removeClass("col-10 offset-1 col-lg-8 offset-lg-2 d-inline-block");
+        } else {
+            $("#card-cover").addClass("col-10 offset-1 col-lg-8 offset-lg-2 d-inline-block");
+        }
+    });
+</script>
+</body>
+</html>
+@if (TempData["Message"] != null)
+{
+    @switch (TempData["Type"])
+    {
+        case "success":
+            <script type="text/javascript">
+                window.onload = function() {
+                    iziToast.success({
+                        title:'@TempData["Header"]',
+                        message: '@TempData["Message"]'
+                    });
+                };
+            </script>
+            break;
+        case "warning":
+            <script type="text/javascript">
+                window.onload = function() {
+                    iziToast.warning({
+                        title:'@TempData["Header"]',
+                        message: '@TempData["Message"]'
+                    });
+                };
+            </script>
+            break;
+        case "error":
+            <script type="text/javascript">
+                window.onload = function() {
+                    iziToast.error({
+                        title:'@TempData["Header"]',
+                        message: '@TempData["Message"]'
+                    });
+                };
+            </script>
+            break;
+        case "info":
+            <script type="text/javascript">
+                window.onload = function() {
+                    iziToast.info({
+                        title:'@TempData["Header"]',
+                        message: '@TempData["Message"]'
+                    });
+                };
+            </script>
+            break;
+    }
+}

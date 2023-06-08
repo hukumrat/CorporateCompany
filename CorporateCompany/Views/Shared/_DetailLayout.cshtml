@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>@ViewData["Title"] - CorporateCompany</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/izitoast/css/iziToast.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/home/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/lib/home/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/lib/home/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/lib/home/css/owl.theme.default.min.css">
+    <link href="~/lib/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/home/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/lib/home/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="~/lib/home/css/aos.css">
+    <link rel="stylesheet" href="~/lib/home/css/style.css">
+    <link href="~/lib/home/css/plugins.css" rel="stylesheet" />
+    <link href="~/lib/home/css/blue.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href="~/lib/home/css/icons.css" rel="stylesheet" />
+</head>
+<body class="height-footer" data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    @RenderBody()
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/font-awesome/js/all.js"></script>
+    <script src="~/lib/izitoast/js/iziToast.js"></script>
+    <script src="~/lib/home/js/jquery-ui.js"></script>
+    <script src="~/lib/home/js/popper.min.js"></script>
+    <script src="~/lib/home/js/bootstrap.min.js"></script>
+    <script src="~/lib/home/js/owl.carousel.min.js"></script>
+    <script src="~/lib/home/js/jquery.countdown.min.js"></script>
+    <script src="~/lib/home/js/jquery.easing.1.3.js"></script>
+    <script src="~/lib/home/js/aos.js"></script>
+    <script src="~/lib/fancybox/jquery.fancybox.js"></script>
+    <script src="~/lib/home/js/jquery.sticky.js"></script>
+    <script src="~/lib/home/js/isotope.pkgd.min.js"></script>
+    <script src="~/lib/home/js/main.js"></script>
+    <script src="~/js/phone-number-validator.js"></script>
+    <script src="~/lib/home/js/plugins.js"></script>
+    <script src="~/lib/home/js/classie.js"></script>
+    <script src="~/lib/home/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/lib/home/js/scripts.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#Phone').usPhoneFormat();
+        });
+    </script>
+    <script src="~/js/file-input.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-fancybox="gallery"]').fancybox({
+                // Options will go here
+            });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(function () {
+            AOS.init();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-fancybox="fancy-gallery"]').fancybox({
+                buttons: [
+                    'slideShow',
+                    'share',
+                    'zoom',
+                    'fullScreen',
+                    'close'
+                ],
+                thumbs: {
+                    autoStart: true
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+@if (TempData["Message"] != null)
+{
+    @switch (TempData["Type"])
+    {
+        case "success":
+            <script type="text/javascript">
+                window.onload = function() {
+                    iziToast.success({
+                        title:'@TempData["Header"]',
+                        message: '@TempData["Message"]'
+                    });
+                };
+            </script>
+            break;
+        case "warning":
+            <script type="text/javascript">
+                window.onload = function() {
+                    iziToast.warning({
+                        title:'@TempData["Header"]',
+                        message: '@TempData["Message"]'
+                    });
+                };
+            </script>
+            break;
+        case "error":
+            <script type="text/javascript">
+                window.onload = function() {
+                    iziToast.error({
+                        title:'@TempData["Header"]',
+                        message: '@TempData["Message"]'
+                    });
+                };
+            </script>
+            break;
+        case "info":
+            <script type="text/javascript">
+                window.onload = function() {
+                    iziToast.info({
+                        title:'@TempData["Header"]',
+                        message: '@TempData["Message"]'
+                    });
+                };
+            </script>
+            break;
+    }
+
+}

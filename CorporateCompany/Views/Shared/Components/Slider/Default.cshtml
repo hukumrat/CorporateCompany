@@ -1,0 +1,9 @@
+﻿@model List<CorporateCompany.Areas.Admin.Models.Slide>
+<div id="fullpage">
+    <div class="section" id="Home">
+   @foreach (var slide in @Model)
+   {
+        <div class="slide background-image" id="slide_@slide.Id" style="background-image: url('@slide.Photo');"><h1 class="text-center">@slide.Header</h1></div>
+   }
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@model System.Collections.Generic.List<CorporateCompany.Areas.Admin.Models.Content>
+
+<main class="body-wrapper">
+    <div class="offset"></div>
+    <div class="white-wrapper">
+        <div class="container"><!-- class="container inner2" -->
+            <h3 class="section-title text-center mb-5">Referanslar</h3>
+            <div id="slide-portfolio" class="image-grid col3">
+                <div class="items-wrapper">
+                    <ul class="isotope items">
+                        @foreach (var item in @Model)
+                        {
+                            <li class="item">
+                                <figure class="icon-overlay"><a href="#0" data-type="slide-portfolio-item-@item.Id"><img src="@item.Photos.First().Path" alt="@item.Name" /></a></figure>
+                                <div class="slide-portfolio-item-info box">
+                                    <h4 class="post-title">@item.Name</h4>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="slide-portfolio-overlay vh-100"></div>
+    </main>
+
+  @foreach (var item in @Model)
+  {
+      <div class="slide-portfolio-item-content dark-wrapper slide-portfolio-item-@item.Id">
+          <div class="slide-portfolio-item-detail">
+              <div class="inner2">
+                  <h2 class="text-center">@item.Name</h2>
+                  <p class="text-center">
+                      @Html.Raw(@item.Description)
+                  </p>
+                  <div class="divide30"></div>
+                  <ul class="basic-gallery text-center">
+                      @foreach (var photo in item.Photos)
+                      {
+                          <li><img src="@photo.Path" alt=""></li>
+                      }
+                  </ul>
+              </div>
+          </div>
+      </div>
+  }
+
+<a href="#" class="slide-portfolio-item-content-close"><i class="fas fa-times"></i></a>

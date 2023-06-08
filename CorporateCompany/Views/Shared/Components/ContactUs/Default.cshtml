@@ -1,0 +1,74 @@
+﻿@model CorporateCompany.Areas.Admin.ViewModels.ContactUsViewModel
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h2 class="section-title mb-3">Bize Ulaşın</h2>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-4 text-center">
+            <p class="mb-4">
+                <span class="icon-location d-block h4 text-primary"></span>
+                <span> <a href="https://www.google.com/maps/search/@Model.Address">@Model.Address</a> </span>
+            </p>
+        </div>
+        <div class="col-md-4 text-center">
+            <p class="mb-4">
+                <span class="icon-phone d-block h4 text-primary"></span>
+                <a href="tel:+90 @Model.Phone">+90 @Model.Phone</a>
+            </p>
+        </div>
+        <div class="col-md-4 text-center">
+            <p class="mb-0">
+                <span class="icon-mail d-block h4 text-primary"></span>
+                <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-5">
+            <form asp-controller="Home" asp-action="Contact" method="post" class="p-5 bg-white">
+                <h2 class="h4 text-black mb-5">İletişim Formu</h2>
+                <div class="row form-group">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <label asp-for="Name" class="text-black" for="Name">İsim:</label>
+                        <input asp-for="Name" type="text" id="Name" placeholder="İsim" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Surname" class="text-black" for="Surname">Soy İsim:</label>
+                        <input asp-for="Surname" type="text" id="Surname" placeholder="Soy İsim" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label asp-for="Email" class="text-black" for="Email">E-Posta</label>
+                        <input asp-for="Email" type="email" id="Email" class="form-control" placeholder="example@domain.com" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label asp-for="Messages" class="text-black" for="Messages">Mesaj:</label>
+                        <textarea asp-for="Messages" cols="30" rows="7" class="form-control" required placeholder="Mesajınızı girin..."></textarea>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-md text-white"><i class="fas fa-paper-plane"></i>&nbsp; Gönder</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script src="https://www.google.com/recaptcha/api.js?render=6Ld-gyAaAAAAADmUaTjB2sbVh6rLVdNenGHg4p7_"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Ld-gyAaAAAAADmUaTjB2sbVh6rLVdNenGHg4p7_', {action: 'contactUs'}).then(function(token) {
+            $("#GoogleMessageCaptchaToken").val(token);
+        });
+    });
+
+</script>
